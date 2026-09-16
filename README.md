@@ -47,6 +47,9 @@ The dashboard supports two modes:
 - **Live mode:** connects to Neo4j AuraDB using Streamlit Cloud Secrets.
 
 On Streamlit Community Cloud, deploy `dashboard/app.py` from this repository.
+The dashboard has its own lightweight dependency file at
+`dashboard/requirements.txt`, so Streamlit Cloud does not need to install the
+full Spark and machine-learning pipeline just to serve the portfolio UI.
 In the app settings, add these secrets:
 
 ```toml
