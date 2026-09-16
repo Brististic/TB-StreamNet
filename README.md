@@ -1,5 +1,8 @@
 # TB StreamNet
 
+> A portfolio-ready real-time epidemiology intelligence dashboard built with
+> Kafka, Spark Structured Streaming, Neo4j, and Streamlit.
+
 TB StreamNet is a local streaming MVP for TB patient telemetry. It generates
 synthetic patient events, transports them through Kafka, aggregates them with
 Spark Structured Streaming, and stores a queryable contact-tracing graph in
@@ -34,6 +37,27 @@ streamlit run dashboard\app.py
 ```
 
 Open the URL printed by Streamlit, usually `http://localhost:8501`.
+
+## Deploy the portfolio dashboard
+
+The dashboard supports two modes:
+
+- **Demo mode:** runs immediately without a database and shows clearly labeled
+  portfolio data.
+- **Live mode:** connects to Neo4j AuraDB using Streamlit Cloud Secrets.
+
+On Streamlit Community Cloud, deploy `dashboard/app.py` from this repository.
+In the app settings, add these secrets:
+
+```toml
+NEO4J_URI = "neo4j+s://<your-aura-instance>.databases.neo4j.io"
+NEO4J_USER = "neo4j"
+NEO4J_PASSWORD = "<your-aura-password>"
+NEO4J_DATABASE = "neo4j"
+```
+
+Do not commit these values to the repository. The local Docker Neo4j instance
+at `localhost:7687` is not reachable from Streamlit Cloud.
 
 ## Run tests
 
